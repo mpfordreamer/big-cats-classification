@@ -1,4 +1,5 @@
 # 🐾 Big Cats Classifier with CNN
+![3 Cats CNN](https://github.com/user-attachments/assets/28fceb7d-6e40-4154-97d1-7282ef5656ac)
 
 This project implements a Convolutional Neural Network (CNN) to classify images of three big cats: **Cheetah**, **Lion**, and **Tiger**. The project covers the entire workflow, from model training and evaluation to converting the model into various formats for deployment.
 
