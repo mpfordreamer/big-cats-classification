@@ -1,97 +1,97 @@
 # 🐾 Big Cats Classifier with CNN
 
-Proyek ini merupakan implementasi model Convolutional Neural Network (CNN) untuk klasifikasi gambar tiga jenis kucing besar: **Cheetah**, **Lion**, dan **Tiger**. Proyek mencakup proses pelatihan model, evaluasi performa, serta konversi model ke berbagai format untuk keperluan deployment.
+This project implements a Convolutional Neural Network (CNN) to classify images of three big cats: **Cheetah**, **Lion**, and **Tiger**. The project covers the entire workflow, from model training and evaluation to converting the model into various formats for deployment.
 
 ---
 
-## 📁 Struktur Proyek
+## 📁 Project Structure
 
 ```
-├── checkpoints/              # Model checkpoint (.keras) untuk val_accuracy dan val_loss
-├── datasets/                # Dataset terstruktur (train/val/test)
+├── checkpoints/              # Model checkpoints (.keras) for val_accuracy and val_loss
+├── datasets/                # Structured dataset (train/val/test)
 │   ├── train/
 │   ├── val/
 │   └── test/
-├── saved_model/             # Model dalam format TensorFlow SavedModel
-├── tfjs_model/              # Model dalam format TensorFlow.js
-├── tflite/                  # Model dalam format TensorFlow Lite
+├── saved_model/             # Model in TensorFlow SavedModel format
+├── tfjs_model/              # Model in TensorFlow.js format
+├── tflite/                  # Model in TensorFlow Lite format
 │   ├── model_loss.tflite
 │   └── labels.txt
-├── notebook.ipynb           # Notebook utama proyek
-├── requirements.txt         # Daftar dependency Python
-└── README.md                # Dokumentasi proyek ini
+├── notebook.ipynb           # Main project notebook
+├── requirements.txt         # Python dependency list
+└── README.md                # This project documentation
 ```
 
 ---
 
-## 🚀 Ringkasan Proyek
+## 🚀 Project Overview
 
-- Model CNN dilatih menggunakan dataset gambar kucing besar yang dibagi menjadi **train**, **val**, dan **test**.
-- Pelatihan menggunakan strategi:
-  - `EarlyStopping` untuk mencegah overfitting
-  - `ReduceLROnPlateau` untuk menyesuaikan learning rate
-  - Checkpointing berdasarkan `val_accuracy` dan `val_loss`
+-   A CNN model was trained using a dataset of big cat images, split into **train**, **val**, and **test** sets.
+-   The training process used the following strategies:
+    -   `EarlyStopping` to prevent overfitting.
+    -   `ReduceLROnPlateau` to adjust the learning rate.
+    -   Checkpointing based on `val_accuracy` and `val_loss`.
 
-> ⏱️ **Checkpoint terbaik**
+> ⏱️ **Best Checkpoints**
 >
-> - **val_loss** (epoch ke-5): `val_loss = 0.2668` | `val_accuracy = 95.58%`
-> - **val_accuracy** (epoch ke-11): `val_accuracy = 95.98%` | `val_loss = 0.3180`
+> -   **val_loss** (5th epoch): `val_loss = 0.2668` | `val_accuracy = 95.58%`
+> -   **val_accuracy** (11th epoch): `val_accuracy = 95.98%` | `val_loss = 0.3180`
 
 ---
 
-## 📊 Evaluasi Model
+## 📊 Model Evaluation
 
-Diuji menggunakan 126 gambar dari 3 kelas:
+The model was tested on a set of 126 images across 3 classes:
 
-| Model                     | Akurasi   | F1-Score Rata-rata |
-|---------------------------|-----------|---------------------|
-| 🏆 `val_loss` terbaik     | **95.24%** | **0.9524**          |
-| 🎯 `val_accuracy` terbaik | 94.44%    | 0.9450              |
+| Model                     | Accuracy   | Average F1-Score |
+| ------------------------- | ---------- | ---------------- |
+| 🏆 **Best `val_loss`**    | **95.24%** | **0.9524**       |
+| 🎯 Best `val_accuracy`    | 94.44%     | 0.9450           |
 
-Model `val_loss` menunjukkan performa prediksi **lebih stabil dan generalisasi lebih baik**, sehingga digunakan untuk proses konversi dan deployment.
-
----
-
-## 🔁 Format Model
-
-Model terbaik (`val_loss`) telah dikonversi ke format berikut:
-
-| Format        | Lokasi                              | Keterangan                         |
-|---------------|-------------------------------------|------------------------------------|
-| `SavedModel`  | `saved_model/bigcats_loss_model/`   | Untuk deploy via TensorFlow        |
-| `TFLite`      | `tflite/model_loss.tflite`          | Untuk perangkat mobile/embedded    |
-| `TF.js`       | `tfjs_model/`                       | Untuk deployment di browser (web)  |
+The `val_loss` model demonstrated **more stable predictions and better generalization**, making it the chosen model for conversion and deployment.
 
 ---
 
-## 💡 Cara Menjalankan
+## 🔁 Model Formats
 
-1. **Clone repositori dan install dependensi**  
-   ```bash
-   pip install -r requirements.txt
-   ```
+The best model (based on `val_loss`) has been converted into the following formats:
 
-2. **Jalankan Notebook**  
-   Buka `notebook.ipynb` untuk melihat keseluruhan proses dari pelatihan, evaluasi, hingga konversi model.
+| Format       | Location                          | Description                       |
+| ------------ | --------------------------------- | --------------------------------- |
+| `SavedModel` | `saved_model/bigcats_loss_model/` | For deployment via TensorFlow     |
+| `TFLite`     | `tflite/model_loss.tflite`        | For mobile/embedded devices       |
+| `TF.js`      | `tfjs_model/`                     | For deployment in the browser (web) |
+
+---
+
+## 💡 How to Run
+
+1.  **Clone the repository and install dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2.  **Run the Notebook**
+    Open `notebook.ipynb` to view the complete workflow, from training and evaluation to model conversion.
 
 ---
 
 ## 📦 Dataset
 
-Dataset sudah disusun ke dalam direktori:
+The dataset is structured into the following directories:
 
 ```bash
 datasets/
-├── train/    # Gambar untuk training
-├── val/      # Gambar untuk validasi
-└── test/     # Gambar untuk testing
+├── train/    # Images for training
+├── val/      # Images for validation
+└── test/     # Images for testing
 ```
 
 ---
 
-## 📈 Visualisasi Training
+## 📈 Training Visualization
 
-Log pelatihan tersimpan dalam folder `logs/` dan dapat divisualisasikan dengan TensorBoard:
+Training logs are saved in the `logs/` directory and can be visualized with TensorBoard:
 
 ```bash
 tensorboard --logdir=logs/
@@ -99,7 +99,7 @@ tensorboard --logdir=logs/
 
 ---
 
-## 📝 Catatan
+## 📝 Key Takeaways
 
-- Model terbaik (`val_loss`) dipilih karena menunjukkan **kesalahan prediksi paling rendah** dan **generalisasi paling baik** terhadap data uji.
-- Evaluasi menunjukkan performa **stabil dan akurat** untuk semua kelas, sehingga siap digunakan dalam berbagai skenario klasifikasi gambar.
+-   The `val_loss` model was selected as the best because it showed the **lowest prediction error** and **superior generalization** on the test data.
+-   The evaluation demonstrates **stable and accurate performance** across all classes, making the model ready for use in various image classification scenarios.
